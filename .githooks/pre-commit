@@ -1,0 +1,17 @@
+#!/bin/sh
+
+read_version() {
+  git show "$1:package.json" 2>/dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).version)}catch{}})'
+}
+
+git rev-parse --verify -q HEAD >/dev/null || exit 0
+git diff --cached --quiet && exit 0
+
+previous_version=$(read_version HEAD)
+staged_version=$(read_version "")
+
+if [ "$previous_version" = "$staged_version" ]; then
+  echo "pre-commit: package.json version is still $previous_version." >&2
+  echo "Every change bumps the version (semver: patch fix, minor feature, major breaking)." >&2
+  exit 1
+fi

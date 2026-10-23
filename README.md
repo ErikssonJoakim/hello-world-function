@@ -23,7 +23,7 @@ curl -X GET "https://a6c440c7ba18.demo.sls.pu-platform-testing.eu.ovhcloud.tools
 
 ```json
 {
-  "message": "Hello, World! (v1.1.0)",
+  "message": "Hello, World! (v1.1.1)",
   "envs": { "...": "..." }
 }
 ```
@@ -37,3 +37,5 @@ curl -X GET "https://a6c440c7ba18.demo.sls.pu-platform-testing.eu.ovhcloud.tools
 ## Versioning
 
 The version comes from `package.json` and is bumped on every change, following semver.
+
+A pre-commit hook rejects any commit that leaves the version unchanged. `npm install` enables it; on a fresh clone run it once.
