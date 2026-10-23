@@ -1,3 +1,5 @@
+const { version } = require('./package.json');
+
 function parseOptions(body) {
   if (!body) return {};
   if (Buffer.isBuffer(body)) body = body.toString('utf8');
@@ -28,7 +30,7 @@ module.exports = async function (context) {
     return json(400, { error: 'showEnvs must be a boolean' });
   }
 
-  const response = { message: 'Hello, World!' };
+  const response = { message: `Hello, World! (v${version})` };
   if (options.showEnvs) response.envs = process.env;
 
   return json(200, response);
