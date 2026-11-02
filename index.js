@@ -18,6 +18,12 @@ function json(status, payload) {
   };
 }
 
+function sortedAlphabetically(envs) {
+  return Object.fromEntries(
+    Object.entries(envs).sort(([a], [b]) => a.localeCompare(b)),
+  );
+}
+
 module.exports = async function (context) {
   let options;
   try {
@@ -31,7 +37,7 @@ module.exports = async function (context) {
   }
 
   const response = { message: `Hello, World! (v${version})` };
-  if (options.showEnvs) response.envs = process.env;
+  if (options.showEnvs) response.envs = sortedAlphabetically(process.env);
 
   return json(200, response);
 };

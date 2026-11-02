@@ -23,12 +23,12 @@ curl -X GET "https://a6c440c7ba18.demo.sls.pu-platform-testing.eu.ovhcloud.tools
 
 ```json
 {
-  "message": "Hello, World! (v1.1.1)",
+  "message": "Hello, World! (v1.1.2)",
   "envs": { "...": "..." }
 }
 ```
 
-`envs` is present only when `showEnvs` is `true`.
+`envs` is present only when `showEnvs` is `true`, its variables sorted alphabetically.
 
 `400` when the body is not valid JSON or `showEnvs` is not a boolean.
 
